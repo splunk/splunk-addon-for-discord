@@ -1,4 +1,10 @@
-# Discord TA vPoC
+# Discord Technical Addon
+
+This technical addon (TA) builds on the great [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter) to ingest Discord chat archives.
+
+This addon configures Splunk to ingest the CSV files produced by the exporter.
+
+We provide an example Docker Compose set up for you to try it out.
 
 ### Instructions ###
 
