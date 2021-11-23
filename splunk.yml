@@ -1,0 +1,11 @@
+splunk:
+  conf:
+    indexes:
+      directory: /opt/splunk/etc/apps/search/local
+      content:
+        discord:
+          coldPath: $SPLUNK_DB/discord/colddb
+          datatype: event
+          homePath: $SPLUNK_DB/discord/db
+          maxTotalDataSizeMB: 512000
+          thawedPath: $SPLUNK_DB/discord/thaweddb

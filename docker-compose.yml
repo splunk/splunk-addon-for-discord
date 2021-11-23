@@ -1,0 +1,31 @@
+version: '3'
+services:
+  discordDownloader:
+    image: tyrrrz/discordchatexporter:2.30.1
+    container_name: discordDownloader
+    entrypoint: /bin/loop.sh $CHANNEL_ID $DISCORD_TOKEN
+    volumes:
+      - ./downloader/loop.sh:/bin/loop.sh
+      - ./output:/var/output
+    env_file:
+      - .env
+  # Splunk Enterprise server:
+  splunk:
+    image: splunk/splunk:latest
+    container_name: splunk
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=changeme
+    ports:
+      - 18000:8000
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8000']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - ./splunk.yml:/tmp/defaults/default.yml
+      - /opt/splunk/var
+      - /opt/splunk/etc
+      - ./TA_discord:/opt/splunk/etc/apps/TA_discord/
+      - ./output:/opt/splunk/etc/apps/TA_discord/data/
