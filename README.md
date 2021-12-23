@@ -6,7 +6,7 @@ This addon configures Splunk to ingest the CSV files produced by the exporter.
 
 We provide an example Docker Compose set up for you to try it out.
 
-### Instructions ###
+## Instructions
 
 If you plan on collecting data directly on the Search Head (SH) then you can just install this TA there.  If you are using a Universal Forwarder you will need to install it on both the Universal Forwarder (will use the inputs.conf) and Search Head (will use the props.conf)
 
@@ -29,6 +29,22 @@ Enable the TA to start ingesting data.
 
 Search the `discord` index for data.
 
-### Support ###
+## Support
 
 Send any questions to blockchain@splunk.com.
+
+## License
+
+Copyright 2021 Splunk Inc.
+ 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+ 
+http://www.apache.org/licenses/LICENSE-2.0
+ 
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
