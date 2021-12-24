@@ -9,6 +9,16 @@ services:
       - ./output:/var/output
     env_file:
       - .env
+  # OpenTelemetry Collector
+  otelcollector:
+    image:  otel/opentelemetry-collector-contrib:0.40.0
+    container_name: otelcollector
+    command: ["--config=/etc/otel-collector-config.yml"]
+    volumes:
+      - ./otel-collector-config.yml:/etc/otel-collector-config.yml
+      - ./output:/output
+    depends_on:
+      - splunk
   # Splunk Enterprise server:
   splunk:
     image: splunk/splunk:latest
@@ -16,6 +26,7 @@ services:
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=changeme
+      - SPLUNK_HEC_TOKEN=00000000-0000-0000-0000-0000000000000
     ports:
       - 18000:8000
     healthcheck:
@@ -28,4 +39,3 @@ services:
       - /opt/splunk/var
       - /opt/splunk/etc
       - ./TA_discord:/opt/splunk/etc/apps/TA_discord/
-      - ./output:/opt/splunk/etc/apps/TA_discord/data/
